@@ -6,18 +6,18 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                sh 'make' 
+                sh 'mkdir kris' 
             }
         }
         stage('Test'){
             steps {
-                sh 'make check'
-                junit 'reports/**/*.xml' 
+                sh 'cd kris'
+                sh 'echo reports/**/*.xml > test.text' 
             }
         }
         stage('Deploy') {
             steps {
-                sh 'make publish'
+                sh 'cat test.text'
             }
         }
     }
